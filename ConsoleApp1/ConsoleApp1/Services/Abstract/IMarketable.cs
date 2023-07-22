@@ -12,6 +12,7 @@ namespace ConsoleApp1.Services.Abstract
     {
         public List<Product> GetProducts();
         public int AddProduct(string name, decimal price, Categories categories, int pcount);
+        public int UptadeProduct(string name, decimal price, Categories categories, int pcount);
         public void DeleteDoctor(int id);
     }
 }

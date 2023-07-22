@@ -97,5 +97,108 @@ namespace ConsoleApp1.Services.Concrete
             }
         }
 
+        public static void MenuAddSales()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+
+        public static void MenuReturnProduct()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+
+        public static void MenuDeleteSales() 
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+
+        public static void MenuShowSales()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+
+        public static void MenuDatetimeSales()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+
+        public static void MenuPriceRangeShow()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+
+        public static void MenuDateSale()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+
+        public static void MenuFindSales()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
     }
 }

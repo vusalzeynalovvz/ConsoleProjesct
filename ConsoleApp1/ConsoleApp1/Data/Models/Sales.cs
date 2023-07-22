@@ -14,17 +14,17 @@ namespace ConsoleApp1.Data.Models
     {
         private static int count = 0;
 
-        public Sales(decimal price, int salesİtem, string? date)
+        public Sales(decimal price, int salesİtem, DateTime date)
         {
             Price = price;
             Salesİtem = salesİtem;
-            Date = date;
+            date = date;
 
             Id= count++;
             count++;
         }
         public decimal Price { get; set; }
         public int Salesİtem { get; set; }
-        public string? Date { get; set; }
+        public DateTime Date { get; set; }
     }
 }

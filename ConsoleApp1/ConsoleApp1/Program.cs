@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Services.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,8 @@ namespace ConsoleApp1
             int option = 0;
             do
             {
-                Console.WriteLine("1. Making corrections on products");
-                Console.WriteLine("2. Make adjustments to sales");
+                Console.WriteLine("1. Transaction On Products");
+                Console.WriteLine("2. Transaction On Sales");
                 Console.WriteLine("3. Exit");
 
                 Console.WriteLine("----------------");
@@ -31,13 +32,16 @@ namespace ConsoleApp1
                 switch (option)
                 {
                     case 1:
+                        Sabmenu.ProductSabmenu();
                         break;
                     case 2:
+                        Sabmenu.SalesSubMenu();
                         break;
-                    case 3:
+                    case 0:
+                        Console.WriteLine("Bye");
                         break;
                     default:
-                        Console.WriteLine("There is no such option!");
+                        Console.WriteLine("No such option!");
                         break;
                 }
             } while (option != 0);
