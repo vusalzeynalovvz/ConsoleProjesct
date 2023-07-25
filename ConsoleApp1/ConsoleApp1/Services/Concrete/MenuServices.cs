@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace ConsoleApp1.Services.Concrete
 {
     public class MenuServices
     {
+        public static MarketServices marketServices ;
         public static void MenuShowProduct()
         {
             try
@@ -25,6 +27,20 @@ namespace ConsoleApp1.Services.Concrete
         {
             try
             {
+                Console.WriteLine("Enter name:");
+                string name = Console.ReadLine();
+
+                Console.WriteLine("Enter price:");
+                string price = Console.ReadLine();
+                int.TryParse(price, out int PriceProduct);
+
+                Console.WriteLine("Enter count:");
+                string count = Console.ReadLine();
+                int.TryParse(price, out int CountProduct);
+
+                Console.WriteLine("Enter Category:");
+                Categories categories = (Categories)Enum.Parse(typeof(Categories), Console.ReadLine(), true);
+
 
             }
             catch (Exception ex)
@@ -101,6 +117,22 @@ namespace ConsoleApp1.Services.Concrete
         {
             try
             {
+                Console.WriteLine("Enter Product Ids:");
+                string productIdsInput = Console.ReadLine();
+                List<int> productIds = productIdsInput.Split(',').Select(int.Parse).ToList();
+
+
+                Console.WriteLine("Enter Sale Counts:");
+                string saleCountsInput = Console.ReadLine();
+                List<int> saleCounts = saleCountsInput.Split(',').Select(int.Parse).ToList();
+                if (saleCounts.Count!= productIds.Count)
+                {
+                    throw new Exception("The number of product Ids and sale counts must be same");
+                }
+
+                marketServices.AddSales(productIds, saleCounts);
+                Console.WriteLine("Sale Added Successfully");
+
 
             }
             catch (Exception ex)

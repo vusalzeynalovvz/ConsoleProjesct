@@ -10,9 +10,23 @@ namespace ConsoleApp1.Services.Abstract
 {
     public interface IMarketable
     {
+        public List<Sales> GetSales();
         public List<Product> GetProducts();
-        public int AddProduct(string name, decimal price, Categories categories, int pcount);
-        public int UptadeProduct(string name, decimal price, Categories categories, int pcount);
-        public void DeleteDoctor(int id);
+        public void AddSales(List<int> ProductIds, List<int> SaleCounts);
+        public int ReturnProductFromSale(int SaleId, int ProductId);
+        public int ReturnSale(int SaleId);
+        public int UptadeProduct(string name, decimal price, Categories categories, int count);
+        public List<Sales> GetSalesForDateInterval(DateTime froDate, DateTime ToDate);
+        public List<Sales> GetSalesForDate(DateTime dateTime);
+        public List<Sales> GetSalesForPriceInterval(decimal minPrice, decimal maxPrice);
+        public Sales GetSalesById(int saleId);
+        public void AddProduct(string name, decimal price, Categories categories, int count);
+        public void UpdateProduct( string NewName, decimal NewPrice, Categories NewCategories,int id);
+        public List<Product> GetProductsByCategory( string categoryName);
+        public List<Product> GetProductsForPriceInterval(decimal minPrice, decimal maxPrice);
+        public List<Product> GetProductsByName(string name);
+
+
+     
     }
 }
