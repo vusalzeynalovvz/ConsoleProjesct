@@ -54,7 +54,7 @@ namespace ConsoleApp1.Services.Concrete
                 {
                     throw new Exception("Quantity that you want to add is more than product's quantity");
                 }
-                 totalPrice = (decimal)(product.Price * saleCount);
+                 totalPrice += (decimal)(product.Price * saleCount);
                 SalesItem salesItem = new SalesItem
                 {
                     Product=product,
@@ -73,15 +73,29 @@ namespace ConsoleApp1.Services.Concrete
             sales.Add(newSales);
         }
 
-  
-        public List<Product> GetProducts()
+        public void DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            if (id==null) throw new Exception("id is null");
+            Product product=products.Find(m => m.Id == id);
+            if (product == null) throw new Exception("Product is not found");
+
+            products.Remove(product);
+
         }
 
-        public List<Product> GetProductsByCategory(string categoryName)
+        public List<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return products;
+        }
+
+        public void GetProductsByCategory(Categories categoryName)
+        {
+            if (categoryName == null) throw new Exception("Category is null");
+            List<Product> ProductCategory=products.FindAll(m=>m.Categories==categoryName);
+            foreach (var item in ProductCategory)
+            {
+                Console.WriteLine($"{item.Id},{item.Name},{item.Price},{item.Categories},{item.Count}");
+            }
         }
 
         public List<Product> GetProductsByName(string name)
@@ -96,7 +110,7 @@ namespace ConsoleApp1.Services.Concrete
 
         public List<Sales> GetSales()
         {
-            throw new NotImplementedException();
+            return sales;
         }
 
         public Sales GetSalesById(int saleId)
@@ -129,14 +143,26 @@ namespace ConsoleApp1.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public void UpdateProduct(string NewName, decimal NewPrice, Categories NewCategories, int id)
+        public void UpdateProduct(string NewName, decimal NewPrice, int NewCount ,Categories NewCategories, int id)
         {
-            throw new NotImplementedException();
+            if (id == null) throw new Exception("Id is null!");
+            Product singleProduct = products.Find(s => s.Id == id);
+            if (singleProduct==null)
+            {
+                throw new Exception("Product is not Found");
+            }
+            //Console.WriteLine("We Find This Producr");
+            //Console.WriteLine($"{singleProduct.Id},{singleProduct.Name},{singleProduct.Price},{singleProduct.Categories},{singleProduct.Count}");
+            if (NewName == null) throw new Exception("New name is null!");
+            if (NewPrice == null) throw new Exception("New Price is null!");
+            if (NewCount == null) throw new Exception("New Count is null!");
+
+            singleProduct.Name = NewName;
+            singleProduct.Price=NewPrice;
+            singleProduct.Categories = NewCategories;
+            singleProduct.Count= NewCount;
         }
 
-        public int UptadeProduct(string name, decimal price, Categories categories, int count)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

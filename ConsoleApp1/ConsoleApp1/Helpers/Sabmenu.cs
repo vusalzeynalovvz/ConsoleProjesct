@@ -51,7 +51,7 @@ namespace ConsoleApp1
                         MenuServices.MenuShowProduct();
                         break;
                     case 5:
-                        MenuServices.MenuFindCategories();
+                        MenuServices.MenuGetProductsByCategory();
                         break;
                     case 6:
                         MenuServices.MenuRangePrice();

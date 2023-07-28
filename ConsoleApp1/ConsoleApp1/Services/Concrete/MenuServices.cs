@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Data.Enums;
+using ConsoleApp1.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,12 @@ namespace ConsoleApp1.Services.Concrete
         {
             try
             {
-
+                var allproducts= marketServices.GetProducts();
+                Console.WriteLine("All Products");
+                foreach (Product item in allproducts)
+                {
+                    Console.WriteLine($"{item.Id},{item.Name},{item.Price},{item.Categories},{item.Count}");
+                }
             }
             catch (Exception ex)
             {
@@ -56,6 +62,25 @@ namespace ConsoleApp1.Services.Concrete
         {
             try
             {
+                Console.WriteLine("Please write product Id which you want to update");
+                string ProductID=Console.ReadLine();
+                int.TryParse(ProductID, out int ID);
+
+                Console.WriteLine("Please Add New name");
+                var NewName=Console.ReadLine();
+
+                Console.WriteLine("Enter New price:");
+                string Newprice = Console.ReadLine();
+                decimal NewPriceProduct = decimal.Parse(Newprice);
+
+                Console.WriteLine("Enter new count:");
+                string Newcount = Console.ReadLine();
+                int.TryParse(Newcount, out int NewCountProduct);
+
+                Console.WriteLine("Enter Category:");
+                Categories Newcategories = (Categories)Enum.Parse(typeof(Categories), Console.ReadLine(), true);
+                marketServices.UpdateProduct(NewName,NewPriceProduct, NewCountProduct,Newcategories,ID);
+                Console.WriteLine( "Product Updated Successfully");
 
             }
             catch (Exception ex)
@@ -68,7 +93,11 @@ namespace ConsoleApp1.Services.Concrete
         {
             try
             {
-
+                Console.WriteLine("Please write Product Id which you want to ddelete");
+               string ProductID=Console.ReadLine();
+                int.TryParse(ProductID, out int ID);
+                marketServices.DeleteProduct(ID);
+                Console.WriteLine("product deleted successfully");
             }
             catch (Exception ex)
             {
@@ -102,7 +131,17 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
-
+        public static void MenuGetProductsByCategory()
+        {
+            Console.WriteLine("Please choose the  Category Name");
+            foreach (Categories categoryy in Enum.GetValues(typeof(Categories)))
+            {
+                Console.WriteLine($"{categoryy}");
+            }
+            Categories categories = (Categories)Enum.Parse(typeof(Categories), Console.ReadLine(), true);
+            marketServices.GetProductsByCategory(categories);
+            
+        }
         public static void MenuFindProductName()
         {
             try
@@ -175,7 +214,12 @@ namespace ConsoleApp1.Services.Concrete
         {
             try
             {
-
+                var sales =marketServices.GetSales();
+                Console.WriteLine("All Sales");
+                foreach (var item in sales)
+                {
+                    Console.WriteLine($"{item.Id},{item.Price},{item.Date}");
+                }
             }
             catch (Exception ex)
             {
