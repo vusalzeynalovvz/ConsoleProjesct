@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Data.Models
 {
-
     public class Sales : BaseEntity
     {
-        private static int count = 0;
+        private static int count = 1;
 
         public Sales(/*decimal price, List<SalesItem> salesİtem, DateTime date*/)
         {
@@ -20,7 +19,7 @@ namespace ConsoleApp1.Data.Models
             //Salesİtem = salesİtem;
             //date = date;
 
-            Id= count++;
+            Id= count;
             count++;
         }
         public decimal Price { get; set; }

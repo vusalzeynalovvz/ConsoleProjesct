@@ -9,7 +9,6 @@ namespace ConsoleApp1
 {
     public class Sabmenu
     {
-
         public static void ProductSabmenu()
         {
             int option = 0;
@@ -75,12 +74,13 @@ namespace ConsoleApp1
             do
             {
                 Console.WriteLine("1. Add Sales");
-                Console.WriteLine("2. Return Sales");
+                Console.WriteLine("2. Return Product From Sales");
                 Console.WriteLine("3. Remove Sales");
                 Console.WriteLine("4. Show Sales");
                 Console.WriteLine("5. Show Price Sales Range");
                 Console.WriteLine("6. Show Date Sales");
                 Console.WriteLine("7. Finding sales by ID");
+                Console.WriteLine("8. Show Sale For Date Interval");
                 Console.WriteLine("0. Go back");
                 Console.WriteLine("------------------------");
                 Console.WriteLine("Please, select an option:");
@@ -109,13 +109,16 @@ namespace ConsoleApp1
                         MenuServices.MenuShowSales();
                         break;
                     case 5:
-                        //MenuServices.MenuPriceRangeShow();
+                        MenuServices.MenuGetSalesForPriceInteerval();
                         break;
                     case 6:
                         MenuServices.MenuDateSale();
                         break;
                     case 7:
                         MenuServices.MenuFindSales();
+                        break;
+                    case 8:
+                        MenuServices.MenuFindSalesForDateInterval();
                         break;
                     case 0:
                         break;

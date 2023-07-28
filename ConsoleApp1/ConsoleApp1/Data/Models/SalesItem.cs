@@ -9,7 +9,7 @@ namespace ConsoleApp1.Data.Models
 {
     public class SalesItem : BaseEntity
     {
-        private static int count = 0;
+        private static int count = 1;
 
         public SalesItem( /*Product product, int saleItemCount*/)
         {
@@ -17,7 +17,6 @@ namespace ConsoleApp1.Data.Models
             //SaleItemCount = saleItemCount;
             Id= count;
             count++;
-           
         }
 
         public Product Product { get; set; }

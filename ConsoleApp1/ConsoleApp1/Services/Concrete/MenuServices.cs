@@ -12,9 +12,6 @@ namespace ConsoleApp1.Services.Concrete
     public class MenuServices
     {
         public static MarketServices marketServices = new MarketServices();
-
-
-
         public static void MenuAddProduct()
         {
             try
@@ -106,9 +103,6 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
-
-      
-
         public static void MenuRangePrice()
         {
             try
@@ -167,7 +161,6 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
-
         public static void MenuAddSales()
         {
             try
@@ -196,11 +189,25 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
-
         public static void MenuReturnProduct()
         {
             try
             {
+                Console.WriteLine("Please write which sale you want to update ");
+                string saleIdsInput = Console.ReadLine();    
+                int.TryParse(saleIdsInput, out int saleId);
+
+                Console.WriteLine("Please write which product you want to return");
+                string productIdsInput = Console.ReadLine();
+                int.TryParse(productIdsInput, out int productId);
+
+                Console.WriteLine("Please write how many product you want to return");
+                string productCountInput = Console.ReadLine();
+                int.TryParse(productCountInput, out int productCount);
+
+                marketServices.ReturnProductFromSale(saleId, productId, productCount);
+                Console.WriteLine("Product returned successfully");
+
 
             }
             catch (Exception ex)
@@ -209,12 +216,15 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
-
         public static void MenuDeleteSales() 
         {
             try
             {
-
+                Console.WriteLine("Please write Sale Id which you want to delete");
+                string SaleID = Console.ReadLine();
+                int.TryParse(SaleID, out int ID);
+                marketServices.DeleteSale(ID);
+                Console.WriteLine("Sale deleted successfully");
             }
             catch (Exception ex)
             {
@@ -222,7 +232,6 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
-
         public static void MenuShowSales()
         {
             try
@@ -232,6 +241,11 @@ namespace ConsoleApp1.Services.Concrete
                 foreach (var item in sales)
                 {
                     Console.WriteLine($"{item.Id},{item.Price},{item.Date}");
+                    foreach (var saleitem in item.Salesİtem)
+                    {
+                        Console.WriteLine($"{saleitem.Product.Name},{saleitem.SaleItemCount}");
+
+                    }
                 }
             }
             catch (Exception ex)
@@ -240,7 +254,6 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
-
         public static void MenuDatetimeSales()
         {
             try
@@ -253,24 +266,76 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
+        public static void MenuGetSalesForPriceInteerval()
+        {
+            try
+            {
+                Console.WriteLine("Please write minimum Price");
+                string minimum = Console.ReadLine();
+                decimal minimumPrice = decimal.Parse(minimum);
 
-        //public static void MenuPriceRangeShow()
-        //{
-        //    try
-        //    {
+                Console.WriteLine("Please write maximum Price");
+                string maximum = Console.ReadLine();
+                decimal maximumPrice = decimal.Parse(maximum);
 
-        //    }
-        //    catch (Exception ex)
-        //    {
+                var SalesPriceInterval = marketServices.GetSalesForPriceInterval(minimumPrice, maximumPrice);
+                foreach (var item in SalesPriceInterval)
+                {
+                    Console.WriteLine($"{item.Id},{item.Price},{item.Date}");
+                    foreach (var saleitem in item.Salesİtem)
+                    {
+                        Console.WriteLine($"{saleitem.Product.Name},{saleitem.SaleItemCount}");
 
-        //        Console.WriteLine($"Oops, got an error: {ex.Message}");
-        //    }
-        //}
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
 
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
         public static void MenuDateSale()
         {
             try
             {
+                Console.WriteLine("Enter date (dd/MM/yyyy):");
+                DateTime date = DateTime.Parse(Console.ReadLine());
+                var SalesForDate = marketServices.GetSalesForDate(date);
+                foreach (var item in SalesForDate)
+                {
+                    Console.WriteLine($"{item.Id},{item.Price},{item.Date}");
+                    foreach (var saleitem in item.Salesİtem)
+                    {
+                        Console.WriteLine($"{saleitem.Product.Name},{saleitem.SaleItemCount}");
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+        public static void MenuFindSales()
+        {
+            try
+            {
+
+                Console.WriteLine("Please write which sale you want to see ");
+                string saleIdsInput = Console.ReadLine();
+                int.TryParse(saleIdsInput, out int saleId);
+
+               var SingleSale= marketServices.GetSalesById(saleId);
+               
+                    Console.WriteLine($"{SingleSale.Id},{SingleSale.Price},{SingleSale.Date}");
+                    foreach (var saleitem in SingleSale.Salesİtem)
+                    {
+                        Console.WriteLine($"{saleitem.Product.Id},{saleitem.Product.Name},{saleitem.SaleItemCount}");
+
+                    }
+                
 
             }
             catch (Exception ex)
@@ -279,11 +344,26 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"Oops, got an error: {ex.Message}");
             }
         }
-
-        public static void MenuFindSales()
+        public static void MenuFindSalesForDateInterval()
         {
             try
             {
+                Console.WriteLine("Enter First date (dd/MM/yyyy):");
+                DateTime Firstdate = DateTime.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter Last date (dd/MM/yyyy):");
+                DateTime Lastdate = DateTime.Parse(Console.ReadLine());
+
+                var SalesForDateInterval= marketServices.GetSalesForDateInterval(Firstdate, Lastdate);
+                foreach (var item in SalesForDateInterval)
+                {
+                    Console.WriteLine($"{item.Id},{item.Price},{item.Date}");
+                    foreach (var saleitem in item.Salesİtem)
+                    {
+                        Console.WriteLine($"{saleitem.Product.Name},{saleitem.SaleItemCount}");
+
+                    }
+                }
 
             }
             catch (Exception ex)
