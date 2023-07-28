@@ -2,6 +2,7 @@
 using ConsoleApp1.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,24 +107,25 @@ namespace ConsoleApp1.Services.Concrete
             }
         }
 
-        public static void MenuFindCategories()
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine($"Oops, got an error: {ex.Message}");
-            }
-        }
+      
 
         public static void MenuRangePrice()
         {
             try
             {
+                Console.WriteLine("Please write minimum Price");
+                string minimum=Console.ReadLine();
+                decimal minimumPrice = decimal.Parse(minimum);
 
+                Console.WriteLine("Please write maximum Price");
+                string maximum = Console.ReadLine();
+                decimal maximumPrice = decimal.Parse(maximum);
+
+                var ProductsPriceInterval=marketServices.GetProductsForPriceInterval(minimumPrice, maximumPrice);
+                foreach (var item in ProductsPriceInterval)
+                {
+                    Console.WriteLine($"{item.Id},{item.Name},{item.Price},{item.Categories},{item.Count}");
+                }
             }
             catch (Exception ex)
             {
@@ -139,13 +141,24 @@ namespace ConsoleApp1.Services.Concrete
                 Console.WriteLine($"{categoryy}");
             }
             Categories categories = (Categories)Enum.Parse(typeof(Categories), Console.ReadLine(), true);
-            marketServices.GetProductsByCategory(categories);
-            
+           var procategory= marketServices.GetProductsByCategory(categories);
+            foreach (var item in procategory)
+            {
+                Console.WriteLine($"{item.Id},{item.Name},{item.Price},{item.Categories},{item.Count}");
+            }
+
         }
         public static void MenuFindProductName()
         {
             try
             {
+                Console.WriteLine("Please write the text for search");
+                string ProductSearch=Console.ReadLine();
+                var Search = marketServices.GetProductsByName(ProductSearch);
+                foreach (var item in Search)
+                {
+                    Console.WriteLine($"{item.Id},{item.Name},{item.Price},{item.Categories},{item.Count}");
+                }
 
             }
             catch (Exception ex)
@@ -241,18 +254,18 @@ namespace ConsoleApp1.Services.Concrete
             }
         }
 
-        public static void MenuPriceRangeShow()
-        {
-            try
-            {
+        //public static void MenuPriceRangeShow()
+        //{
+        //    try
+        //    {
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                Console.WriteLine($"Oops, got an error: {ex.Message}");
-            }
-        }
+        //        Console.WriteLine($"Oops, got an error: {ex.Message}");
+        //    }
+        //}
 
         public static void MenuDateSale()
         {

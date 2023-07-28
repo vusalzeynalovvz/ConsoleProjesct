@@ -109,7 +109,7 @@ namespace ConsoleApp1
                         MenuServices.MenuShowSales();
                         break;
                     case 5:
-                        MenuServices.MenuPriceRangeShow();
+                        //MenuServices.MenuPriceRangeShow();
                         break;
                     case 6:
                         MenuServices.MenuDateSale();

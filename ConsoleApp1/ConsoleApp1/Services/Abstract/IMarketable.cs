@@ -23,7 +23,7 @@ namespace ConsoleApp1.Services.Abstract
         public Sales GetSalesById(int saleId);
         public int AddProduct(string name, decimal price, Categories categories, int count);
         public void UpdateProduct( string NewName, decimal NewPrice,int NewCount, Categories NewCategories,int id);
-        public void GetProductsByCategory( Categories categoryName);
+        public List<Product> GetProductsByCategory( Categories categoryName);
         public List<Product> GetProductsForPriceInterval(decimal minPrice, decimal maxPrice);
         public List<Product> GetProductsByName(string name);
 

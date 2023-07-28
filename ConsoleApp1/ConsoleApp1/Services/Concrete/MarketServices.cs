@@ -88,24 +88,26 @@ namespace ConsoleApp1.Services.Concrete
             return products;
         }
 
-        public void GetProductsByCategory(Categories categoryName)
+        public List<Product> GetProductsByCategory(Categories categoryName)
         {
             if (categoryName == null) throw new Exception("Category is null");
             List<Product> ProductCategory=products.FindAll(m=>m.Categories==categoryName);
-            foreach (var item in ProductCategory)
-            {
-                Console.WriteLine($"{item.Id},{item.Name},{item.Price},{item.Categories},{item.Count}");
-            }
+          return ProductCategory;
         }
 
         public List<Product> GetProductsByName(string name)
         {
-            throw new NotImplementedException();
+            if (name == null) throw new Exception("name is null");
+            List<Product> ProductName = products.FindAll(m => m.Name.Contains(name));
+            return ProductName;
         }
 
         public List<Product> GetProductsForPriceInterval(decimal minPrice, decimal maxPrice)
         {
-            throw new NotImplementedException();
+            if (minPrice == null) throw new Exception("minimum Price is null");
+            if (maxPrice == null) throw new Exception("maximum Price is null");
+            List<Product> productsForPrice = products.FindAll(m => m.Price > minPrice && m.Price < maxPrice);
+            return productsForPrice;
         }
 
         public List<Sales> GetSales()
