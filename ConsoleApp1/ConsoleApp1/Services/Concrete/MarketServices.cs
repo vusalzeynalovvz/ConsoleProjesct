@@ -11,9 +11,10 @@ namespace ConsoleApp1.Services.Concrete
 {
     public class MarketServices : IMarketable
     {
-        public List<Product> products; 
-        public List<Sales> sales;
-        public void AddProduct(string name, decimal price, Categories categories, int count)
+        public List<Product> products=new(); 
+        public List<Sales> sales=new();
+    
+        public int AddProduct(string name, decimal price, Categories categories, int count)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new Exception("Name is null!");
             if (price==null) throw new Exception("price is null!");
@@ -28,6 +29,7 @@ namespace ConsoleApp1.Services.Concrete
                 Count= count
             };
             products.Add(product);
+            return product.Id;
         }
 
         public void AddSales(List<int> ProductIds, List<int> SaleCounts)
@@ -52,7 +54,7 @@ namespace ConsoleApp1.Services.Concrete
                 {
                     throw new Exception("Quantity that you want to add is more than product's quantity");
                 }
-                 totalPrice = product.Price * saleCount;
+                 totalPrice = (decimal)(product.Price * saleCount);
                 SalesItem salesItem = new SalesItem
                 {
                     Product=product,

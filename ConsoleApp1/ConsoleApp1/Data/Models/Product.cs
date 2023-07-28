@@ -10,7 +10,7 @@ namespace ConsoleApp1.Data.Models
 {
     public class Product : BaseEntity
     {
-        private static int count = 1;
+        private static int count = 0;
 
         public Product(/*string name, decimal price, Categories categories,int count */)
         {
@@ -19,14 +19,14 @@ namespace ConsoleApp1.Data.Models
             //Categories= categories;
             //Count= count;
 
-            Id= count;
+            Id= count ;
             count++;
         }
 
         public string? Name { get; set; }
-        public decimal Price { get; set; }
-        public Categories Categories { get; set; }
-        public int Count { get; set; }
+        public decimal? Price { get; set; }
+        public Categories? Categories { get; set; }
+        public int? Count { get; set; }
 
     }
 }

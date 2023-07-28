@@ -9,19 +9,9 @@ namespace ConsoleApp1.Services.Concrete
 {
     public class MenuServices
     {
-        public static MarketServices marketServices ;
-        public static void MenuShowProduct()
-        {
-            try
-            {
+        public static MarketServices marketServices = new MarketServices();
 
-            }
-            catch (Exception ex)
-            {
 
-                Console.WriteLine($"Oops, got an error: {ex.Message}");
-            }
-        }
 
         public static void MenuAddProduct()
         {
@@ -32,15 +22,28 @@ namespace ConsoleApp1.Services.Concrete
 
                 Console.WriteLine("Enter price:");
                 string price = Console.ReadLine();
-                int.TryParse(price, out int PriceProduct);
+                decimal PriceProduct = decimal.Parse(price);
 
                 Console.WriteLine("Enter count:");
                 string count = Console.ReadLine();
-                int.TryParse(price, out int CountProduct);
+                int.TryParse(count, out int CountProduct);
 
                 Console.WriteLine("Enter Category:");
                 Categories categories = (Categories)Enum.Parse(typeof(Categories), Console.ReadLine(), true);
 
+                int newId= marketServices.AddProduct(name, PriceProduct, categories, CountProduct);
+                Console.WriteLine("Product Added Successfully");
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Oops, got an error: {ex.Message}");
+            }
+        }
+        public static void MenuShowProduct()
+        {
+            try
+            {
 
             }
             catch (Exception ex)

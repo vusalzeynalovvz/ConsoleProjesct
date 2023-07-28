@@ -20,7 +20,7 @@ namespace ConsoleApp1.Services.Abstract
         public List<Sales> GetSalesForDate(DateTime dateTime);
         public List<Sales> GetSalesForPriceInterval(decimal minPrice, decimal maxPrice);
         public Sales GetSalesById(int saleId);
-        public void AddProduct(string name, decimal price, Categories categories, int count);
+        public int AddProduct(string name, decimal price, Categories categories, int count);
         public void UpdateProduct( string NewName, decimal NewPrice, Categories NewCategories,int id);
         public List<Product> GetProductsByCategory( string categoryName);
         public List<Product> GetProductsForPriceInterval(decimal minPrice, decimal maxPrice);
