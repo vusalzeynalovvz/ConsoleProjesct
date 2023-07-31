@@ -11,10 +11,9 @@ namespace ConsoleApp1.Data.Models
     {
         private static int count = 1;
 
-        public SalesItem( /*Product product, int saleItemCount*/)
+        public SalesItem()
         {
-            //Product = product;
-            //SaleItemCount = saleItemCount;
+
             Id= count;
             count++;
         }

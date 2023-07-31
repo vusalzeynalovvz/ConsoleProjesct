@@ -13,11 +13,9 @@ namespace ConsoleApp1.Data.Models
     {
         private static int count = 1;
 
-        public Sales(/*decimal price, List<SalesItem> salesİtem, DateTime date*/)
+        public Sales()
         {
-            //Price = price;
-            //Salesİtem = salesİtem;
-            //date = date;
+          
 
             Id= count;
             count++;

@@ -11,13 +11,8 @@ namespace ConsoleApp1.Data.Models
     public class Product : BaseEntity
     {
         private static int count = 1;
-        public Product(/*string name, decimal price, Categories categories,int count */)
+        public Product()
         {
-            //Name= name;
-            //Price= price;
-            //Categories= categories;
-            //Count= count;
-
             Id= count ;
             count++;
         }
